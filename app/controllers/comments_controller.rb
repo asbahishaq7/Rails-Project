@@ -1,27 +1,11 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
-  # GET /comments
-  # GET /comments.json
-  def index
-    @comments = Comment.all
-  end
-
-  # GET /comments/1
-  # GET /comments/1.json
-  def show
-  end
-
-  # GET /comments/new
-  def new
-    #@comment = Comment.new
-    @comment = current_user.comments.build
-  end
+  before_action :authenticate_user!
 
   # GET /comments/1/edit
   def edit
   end
-
+  
 
   # POST /comments
   # POST /comments.json
@@ -60,6 +44,7 @@ class CommentsController < ApplicationController
       end
     end
   end
+
 
   # DELETE /comments/1
   # DELETE /comments/1.json

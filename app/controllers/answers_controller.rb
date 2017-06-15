@@ -1,29 +1,11 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
-  # GET /answers
-  # GET /answers.json
-  def index
-    @answers = Answer.all
-  end
-
-  # GET /answers/1
-  # GET /answers/1.json
-  def show
-    #@comments = @answer.comments
-    @comment  = @answer.comments.build
-  end
-
-  # GET /answers/new
-  def new
-    #@answer = Answer.new
-    @answer = current_user.answers.build
-  end
+  before_action :authenticate_user!
 
   # GET /answers/1/edit
   def edit
   end
-
+  
   # POST /answers
   # POST /answers.json
   def create
@@ -51,6 +33,7 @@ class AnswersController < ApplicationController
     end
   end
 
+  
   # DELETE /answers/1
   # DELETE /answers/1.json
   def destroy
@@ -59,7 +42,7 @@ class AnswersController < ApplicationController
       format.html { redirect_to answers_url }
     end
   end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_answer
