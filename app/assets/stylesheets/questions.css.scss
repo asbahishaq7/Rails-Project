@@ -1,3 +1,111 @@
 // Place all the styles related to the Questions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.questions {
+	textarea
+	{
+	  border:1px solid #999999;
+	  width:50%;
+	  height:4em;
+	  margin:5px 0;
+	  padding:3px;
+	}
+	.answers textarea
+	{
+	  border:1px solid #999999;
+	  width:50%;
+	  height:2em;
+	  margin:5px 0;
+	  padding:3px;
+	}
+	h3, b{
+		text-decoration: underline;
+	}
+	h1 {
+		margin: 0;
+		padding-bottom: 0.5em;
+		font: 200% sans-serif;
+		color: #226;
+		border-bottom: 3px dotted #77d;
+	}
+	.question_description {
+			font-size: 150%;
+		}
+
+	/* An entry in the store catalog */
+	.comments, .answers .comments{
+		overflow: auto;
+		margin-top: 1em;
+		border-bottom: 1px dotted #77d;
+		min-height: 100px;
+		img {
+			width: 80px;
+			margin-right: 5px;
+			margin-bottom: 5px;
+			position: absolute;
+		}
+		h2 {
+			font-size: 100%;
+			font-family: sans-serif;
+			margin-left: 100px;
+			margin-top: 0;
+			margin-bottom: 2px;
+			color: #227;
+		}
+		p, div {
+			margin-left: 100px;
+			margin-top: 0.5em;
+			margin-bottom: 0.8em;
+			font-size: 10px;
+			form, div {
+				display: inline;
+			}
+		}
+		.comment_form{ 
+			margin-left: 200px;
+			margin-top: 0.5em;
+			margin-bottom: 0.8em;
+		}
+	}
+	hr { 
+	    display: block;
+	    margin-top: 0.5em;
+	    margin-bottom: 0.5em;
+	    margin-left: auto;
+	    margin-right: auto;
+	    border-style: inset;
+	    border-width: 1px;
+	}
+	.answers, .comments{
+		//border-bottom: 3px dotted #77d;
+	}
+	 .answers .answer_form {
+		overflow: auto;
+		margin-top: 3em;
+		//border-bottom: 3px dotted #77d;
+		min-height: 100px;
+		img {
+			width: 80px;
+			margin-right: 5px;
+			margin-bottom: 5px;
+			position: absolute;
+		}
+		h2 {
+			font-size: 130%;
+			font-family: sans-serif;
+			margin-left: 100px;
+			margin-top: 0;
+			margin-bottom: 2px;
+			color: #227;
+		}
+		p, div {
+			margin-left: 100px;
+			margin-top: 0.5em;
+			margin-bottom: 0.8em;
+			font-size: 120%;
+			form, div {
+				display: inline;
+			}
+		}
+	}
+}

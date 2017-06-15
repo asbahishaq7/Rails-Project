@@ -1,4 +1,7 @@
 Stackoverflow::Application.routes.draw do
+  
+  
+  devise_for :users
   resources :comments
 
   resources :users
@@ -7,6 +10,7 @@ Stackoverflow::Application.routes.draw do
 
   resources :questions
 
+  root to: 'questions#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

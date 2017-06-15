@@ -1,0 +1,16 @@
+
+<p>
+  <!-- <strong>Detail:</strong> -->
+  <%= answer.detail %>
+  <% if user_signed_in? && current_user.id == answer.user_id %> 
+  	<strong> -- you -- </strong>
+	  	<%= link_to 'Edit', edit_comment_path(answer) %>
+	  	<%= link_to 'Delete', answer, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% else %>
+  	<strong> -- <%= answer.user.email %> -- </strong>
+  <% end %>
+  
+</p>
+
+<%#= link_to 'Edit', edit_comment_path(@comment) %> 
+<%#= link_to 'Back', comments_path %>

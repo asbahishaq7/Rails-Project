@@ -1,4 +1,4 @@
-<h1>Listing questions</h1>
+<h1> Questions</h1>
 
 <table>
   <thead>
@@ -17,8 +17,14 @@
         <td><%= question.title %></td>
         <td><%= question.description %></td>
         <td><%= link_to 'Show', question %></td>
-        <td><%= link_to 'Edit', edit_question_path(question) %></td>
-        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if user_signed_in? && current_user.id == question.user_id %>
+          <td><%= link_to 'Edit', edit_question_path(question) %></td>
+          <td><%= link_to 'Delete', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <% end %>
+      </tr>
+      <tr> 
+        <td> <hr> </td> <td> <hr> </td><td> <hr> </td><td> <hr> </td>
       </tr>
     <% end %>
   </tbody>

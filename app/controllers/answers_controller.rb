@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:index, :show]
   # GET /answers
   # GET /answers.json
   def index
@@ -10,11 +10,14 @@ class AnswersController < ApplicationController
   # GET /answers/1
   # GET /answers/1.json
   def show
+    #@comments = @answer.comments
+    @comment  = @answer.comments.build
   end
 
   # GET /answers/new
   def new
-    @answer = Answer.new
+    #@answer = Answer.new
+    @answer = current_user.answers.build
   end
 
   # GET /answers/1/edit
@@ -24,11 +27,12 @@ class AnswersController < ApplicationController
   # POST /answers
   # POST /answers.json
   def create
-    @answer = Answer.new(answer_params)
-
+    #binding.pry
+    @answer  = current_user.answers.build(answer_params)
+    
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
+        format.html { redirect_to request.referer}
       else
         format.html { render action: 'new' }
       end
@@ -64,6 +68,6 @@ class AnswersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
-      params.require(:answer).permit(:detail)
+      params.require(:answer).permit(:detail, :question_id)
     end
 end
