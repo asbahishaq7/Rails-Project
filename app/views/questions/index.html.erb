@@ -19,10 +19,12 @@
         <td><%= question.title %></td>
         <td><%= question.description %></td>
         <td><%= link_to 'Show', question %></td>
-        <% if user_signed_in? && current_user.id == question.user_id %>
-          <td><%= link_to 'Edit', edit_question_path(question) %></td>
-          <td><%= link_to 'Delete', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if can? :update, question %>
+          <% if user_signed_in? && (current_user.id == question.user_id || current_user.admin?) %>
+            <td><%= link_to 'Edit', edit_question_path(question) %></td>
+            <td><%= link_to 'Delete', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
+          <% end %>
         <% end %>
       </tr>
       <tr> 
@@ -31,6 +33,8 @@
     <% end %>
   </tbody>
 </table>
+
+<%= will_paginate @questions %>
 
 <br>
 

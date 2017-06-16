@@ -6,7 +6,8 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    #@questions = Question.all
+    @questions = Question.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /questions/1
@@ -14,7 +15,7 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
 
-    @comments = @question.comments
+    @comments = @question.comments.paginate(page: params[:page], per_page: 2)
     @answers = @question.answers
     @answer  = @question.answers.build
     @comment = @question.comments.build
@@ -77,7 +78,7 @@ class QuestionsController < ApplicationController
     end
 
     def validate_user
-      if current_user.id != @question.user_id
+      unless current_user.id == @question.user_id || current_user.admin?
         redirect_to root_path
       end
     end

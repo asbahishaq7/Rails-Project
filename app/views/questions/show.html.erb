@@ -10,19 +10,23 @@
   <!-- <strong>Description:</strong> -->	
   <div class="question_description"> <%= @question.description %> </div>
 </p>
-<% if user_signed_in? && current_user.id == @question.user_id %>
-	<%= link_to 'Edit', edit_question_path(@question) %> 
-	<%= link_to 'New Question', new_question_path %>
+<% if can? :update, @question %>
+	<% if user_signed_in? && (current_user.id == @question.user_id || current_user.admin?)%>
+		<%= link_to 'Edit', edit_question_path(@question) %> 
+		<%= link_to 'New Question', new_question_path %>
+	<% end %>
 <% end %>
 <div class="comments" name="comments" >
 	<h2> Comments </h2>
 	<%= render 'comments/show_selective', :comments => @comments  %>
 	
 	<br>
-	<div class= "comment_form" name="comment_form">
-		<strong> Post Comment </strong>
-		<%= render 'comments/form' %>
-	</div>
+	<% if can? :create, @comment %>
+		<div class= "comment_form" name="comment_form">
+			<strong> Post Comment </strong>
+			<%= render 'comments/form' %>
+		</div>
+	<% end %>
 </div>
 
 <br>
@@ -36,10 +40,12 @@
 				<div class="comments" name="comments" >
 					<b> Comments </b>
 					<%= render 'comments/show_selective', :comments => answer.comments  %>
-					<div name="comment_form">
-						<strong> Post Comment </strong>
-						<%= render 'comments/form', :@comment => answer.comments.build  %>
-					</div>
+					<% if can? :create, @comment %>
+						<div name="comment_form">
+							<strong> Post Comment </strong>
+							<%= render 'comments/form', :@comment => answer.comments.build  %>
+						</div>
+					<% end %>
 				</div>
 			<% end %>
 		<% end %>
@@ -47,10 +53,12 @@
 
 
 	<br>
-	<div class="answer_form" name="answer_form">
-		<h2> Post Answer </h2>
-		<%= render 'answers/form' %>
-	</div>
+	<% if can? :create, @answer %>
+		<div class="answer_form" name="answer_form">
+			<h2> Post Answer </h2>
+			<%= render 'answers/form' %>
+		</div>
+	<% end %>
 
 </div>
 
