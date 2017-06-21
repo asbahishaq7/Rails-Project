@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-	has_many   :answers
-	has_many   :comments, as: :commentable
+	has_many   :answers, dependent: :destroy
+	has_many   :comments, as: :commentable, dependent: :destroy
 	belongs_to :user
 end

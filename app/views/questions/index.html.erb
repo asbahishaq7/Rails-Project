@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Description</th>
       <th></th>
       <th></th>
       <th></th>
@@ -16,8 +15,7 @@
   <tbody>
     <% @questions.each do |question| %>
       <tr>
-        <td><%= question.title %></td>
-        <td><%= question.description %></td>
+        <td>  <b><%= question.title %> </b></td>
         <td><%= link_to 'Show', question %></td>
         <% if can? :update, question %>
           <% if user_signed_in? && (current_user.id == question.user_id || current_user.admin?) %>
@@ -28,7 +26,7 @@
         <% end %>
       </tr>
       <tr> 
-        <td> <hr> </td> <td> <hr> </td><td> <hr> </td><td> <hr> </td>
+        <td> <hr> </td> <td> <hr> </td><td> <hr> </td>
       </tr>
     <% end %>
   </tbody>

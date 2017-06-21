@@ -1,17 +1,12 @@
-
 <p>
-  <!-- <strong>Detail:</strong> -->
   <%= comment.detail %>
-  <% if can? :update, @comment %>
-	  <% if user_signed_in? && (current_user.id == @comment.user_id || current_user.admin?) %>
-	  	<strong> -- you -- </strong>
+  <% if can? :update, comment %>
+  		<% unless current_user.admin? %>
+	  		<strong> -- you -- </strong>
+	  	<% end %>
 	  	<%= link_to 'Edit', edit_comment_path(comment) %>
 	  	<%= link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
-	  <% else %>
-	  	<strong> -- <%= comment.user.email %> -- </strong>
-	  <% end %>
+	<% else %>
+	  <strong> -- <%= comment.user.email %> -- </strong>
 	<% end %>  
 </p>
-
-<%#= link_to 'Edit', edit_comment_path(@comment) %> 
-<%#= link_to 'Back', comments_path %>

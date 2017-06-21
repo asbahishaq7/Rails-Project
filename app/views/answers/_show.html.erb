@@ -1,13 +1,17 @@
 
+<div class="answer">
 <p>
   <!-- <strong>Detail:</strong> -->
   <%= answer.detail %>
-  <% if user_signed_in? && current_user.id == answer.user_id %> 
-  	<strong> -- you -- </strong>
-	  	<%= link_to 'Edit', edit_comment_path(answer) %>
+  <% if can? :update, answer %> 
+	  <% unless current_user.admin? %>
+	  	<strong> -- you -- </strong>
+	  <% end %>
+	  	<%= link_to 'Edit', edit_answer_path(answer) %>
 	  	<%= link_to 'Delete', answer, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% else %>
   	<strong> -- <%= answer.user.email %> -- </strong>
   <% end %>
   
 </p>
+</div>

@@ -1,13 +1,14 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :validate_user, except: [:index, :show]
+  #before_action :validate_user, except: [:new, :create, :index, :show]
+  authorize_resource
 
   # GET /questions
   # GET /questions.json
   def index
     #@questions = Question.all
-    @questions = Question.paginate(page: params[:page], per_page: 10)
+    @questions = Question.paginate(page: params[:page], per_page: 5)
   end
 
   # GET /questions/1
@@ -79,7 +80,7 @@ class QuestionsController < ApplicationController
 
     def validate_user
       unless current_user.id == @question.user_id || current_user.admin?
-        redirect_to root_path
+        redirect_to root_path, notice: 'You are not authorized'
       end
     end
 end

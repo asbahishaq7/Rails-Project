@@ -1,6 +1,6 @@
+<p id="notice"><%= notice %></p>
 <h1>Editing answer</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @answer %> |
-<%= link_to 'Back', request.referer %>
+<%= link_to 'Back', Question.find(@answer.question_id) %>

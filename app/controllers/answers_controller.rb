@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-
+  authorize_resource
   # GET /answers/1/edit
   def edit
   end
@@ -26,7 +26,7 @@ class AnswersController < ApplicationController
   def update
     respond_to do |format|
       if @answer.update(answer_params)
-        format.html { redirect_to @answer, notice: 'Answer was successfully updated.' }
+        format.html { redirect_to Question.find(@answer.question_id), notice: 'Answer was successfully updated.' }
       else
         format.html { render action: 'edit' }
       end
@@ -39,7 +39,7 @@ class AnswersController < ApplicationController
   def destroy
     @answer.destroy
     respond_to do |format|
-      format.html { redirect_to answers_url }
+      format.html { redirect_to Question.find(@answer.question_id) }
     end
   end
   
