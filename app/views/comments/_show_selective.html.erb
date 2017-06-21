@@ -1,0 +1,8 @@
+<div class="comments_list" name="comments_list" >
+	<% comments.each do |comment| %>
+		<%= render 'comments/show', :comment => comment  %>
+	<% end %>
+	<% if comments.size >0 %>
+		<%= will_paginate @comments %>
+	<% end %>
+</div>
