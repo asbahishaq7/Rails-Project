@@ -1,19 +1,21 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  authorize_resource
+  load_and_authorize_resource
   # GET /comments/1/edit
   def edit
+    respond_to do |format|
+      format.json { redirect_to root_path, notice: t(:json_error) }
+      format.html { }
+    end
   end
   
 
   # POST /comments
-  # POST /comments.json
   def create
     @comment = current_user.comments.build(comment_params)
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to request.referer}
+        format.html { redirect_to request.referer, notice: t(:comment_created)  }
       else
         format.html { render action: 'new' }
       end
@@ -21,11 +23,12 @@ class CommentsController < ApplicationController
   end
 
   # PATCH/PUT /comments/1
-  # PATCH/PUT /comments/1.json
   def update
+    commentable = get_redirect_route
+
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to Question.find(@comment.commentable_id), notice: 'Comment was successfully updated.' }
+        format.html { redirect_to commentable, notice: t(:comment_updated) }
       else
         format.html { render action: 'edit' }
       end
@@ -34,15 +37,24 @@ class CommentsController < ApplicationController
 
 
   # DELETE /comments/1
-  # DELETE /comments/1.json
   def destroy
+    commentable = get_redirect_route
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to Question.find(@comment.commentable_id) }
+      format.html { redirect_to commentable, notice: t(:comment_deleted)  }
     end
   end
 
   private
+    def get_redirect_route
+      commentable = @comment.commentable
+    
+      if @comment.commentable_type == 'Answer'
+        commentable = commentable.question
+      end
+      return commentable
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @comment = Comment.find(params[:id])

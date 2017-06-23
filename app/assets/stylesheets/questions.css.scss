@@ -10,14 +10,7 @@
 	  margin:5px 0;
 	  padding:3px;
 	}
-	.answers textarea
-	{
-	  border:1px solid #999999;
-	  width:50%;
-	  height:2em;
-	  margin:5px 0;
-	  padding:3px;
-	}
+	
 	h3, b{
 		text-decoration: underline;
 	}
@@ -25,19 +18,18 @@
 		margin: 0;
 		padding-bottom: 0.5em;
 		font: 200% sans-serif;
-		color: #226;
+		color: #222266;
 		border-bottom: 3px dotted #77d;
 	}
-	.question_description {
+	.question-description {
 			width: 70%;
 			font-size: 150%;
 		}
 
-	/* An entry in the store catalog */
 	.comments, .answers .comments{
 		overflow: auto;
 		margin-top: 1em;
-		border-bottom: 1px dotted #77d;
+		border-bottom: 1px dotted #7777DD;
 		min-height: 100px;
 		img {
 			width: 80px;
@@ -51,7 +43,7 @@
 			margin-left: 100px;
 			margin-top: 0;
 			margin-bottom: 2px;
-			color: #227;
+			color: #222277;
 		}
 		p, div {
 			margin-left: 100px;
@@ -62,7 +54,7 @@
 				display: inline;
 			}
 		}
-		.comment_form{ 
+		.comment-form{ 
 			margin-left: 200px;
 			margin-top: 0.5em;
 			margin-bottom: 0.8em;
@@ -81,7 +73,7 @@
 		width: 70%;
 		//border-bottom: 3px dotted #77d;
 	}
-	 .answers .answer_form {
+	 .answers .answer-form {
 		overflow: auto;
 		margin-top: 3em;
 		//border-bottom: 3px dotted #77d;

@@ -1,20 +1,23 @@
 class AnswersController < ApplicationController
-  before_action :set_answer, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  authorize_resource
+  load_and_authorize_resource
+
   # GET /answers/1/edit
   def edit
+    respond_to do |format|
+      format.json { redirect_to root_path, notice: t(:json_error) }
+      format.html { }
+    end
   end
   
   # POST /answers
-  # POST /answers.json
   def create
     #binding.pry
     @answer  = current_user.answers.build(answer_params)
     
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to request.referer}
+        format.html { redirect_to request.referer, notice: t(:answer_created)  }
       else
         format.html { render action: 'new' }
       end
@@ -22,11 +25,10 @@ class AnswersController < ApplicationController
   end
 
   # PATCH/PUT /answers/1
-  # PATCH/PUT /answers/1.json
   def update
     respond_to do |format|
       if @answer.update(answer_params)
-        format.html { redirect_to Question.find(@answer.question_id), notice: 'Answer was successfully updated.' }
+        format.html { redirect_to @answer.question, notice: t(:answer_updated) }
       else
         format.html { render action: 'edit' }
       end
@@ -35,11 +37,10 @@ class AnswersController < ApplicationController
 
   
   # DELETE /answers/1
-  # DELETE /answers/1.json
   def destroy
     @answer.destroy
     respond_to do |format|
-      format.html { redirect_to Question.find(@answer.question_id) }
+      format.html { redirect_to @answer.question, notice: t(:answer_deleted)  }
     end
   end
   

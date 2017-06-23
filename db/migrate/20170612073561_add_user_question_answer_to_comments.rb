@@ -1,4 +1,4 @@
-class AddRelationsComments < ActiveRecord::Migration
+class AddUserQuestionAnswerToComments < ActiveRecord::Migration
   def change
     change_table :comments do |t|
     	t.belongs_to :user, index: true

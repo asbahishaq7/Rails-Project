@@ -19,5 +19,17 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
+
+# config/locales/en.yml
 en:
-  hello: "Hello world"
+  hello_world:        Hello world!
+  json_error:         The website currently doesnt work with json!
+  question_created:   Question was successfully created.
+  question_updated:   Question was successfully updated.
+  question_deleted:   Question was successfully deleted.
+  answer_created:     Answer was successfully created.
+  answer_updated:     Answer was successfully updated.
+  answer_deleted:     Answer was successfully deleted.
+  comment_created:    Comment was successfully created.
+  comment_updated:    Comment was successfully updated.
+  comment_deleted:    Comment was successfully deleted.

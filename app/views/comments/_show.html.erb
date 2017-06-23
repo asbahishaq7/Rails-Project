@@ -1,12 +1,13 @@
 <p>
+  
   <%= comment.detail %>
   <% if can? :update, comment %>
-  		<% unless current_user.admin? %>
-	  		<strong> -- you -- </strong>
-	  	<% end %>
 	  	<%= link_to 'Edit', edit_comment_path(comment) %>
+  <% end %>
+
+  <% if can? :destroy, comment %>
 	  	<%= link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
-	<% else %>
-	  <strong> -- <%= comment.user.email %> -- </strong>
-	<% end %>  
+	<% end %>
+	
+  <strong> -- <%= comment.user.email %> -- </strong> 
 </p>

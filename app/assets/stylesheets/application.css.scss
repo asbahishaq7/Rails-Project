@@ -16,14 +16,14 @@
  }
 #banner #sign_in {
  	float: right;
- 	background: #9c9;
+ 	background: #99CC99;
  }
 #banner {
-	background: #9c9;
+	background: #99CC99;
 	padding: 10px;
 	border-bottom: 2px solid;
 	font: small-caps 40px/40px "Times New Roman", serif;
-	color: #282;
+	color: #228822;
 	text-align: center;
 
 	img {
@@ -33,11 +33,11 @@
 }
 
 #notice {
-	color: #000 !important;
+	color: #000000 !important;
 	border: 2px solid red;
 	padding: 1em;
 	margin-bottom: 2em;
-	background-color: #f0f0f0;
+	background-color: #F0F0F0;
 	font: bold smaller sans-serif;
 }
 #columns {
@@ -64,7 +64,7 @@
 			li {
 				list-style: none;
 				a {
-					color: #bfb;
+					color: #BBFFBB;
 					font-size: small;
 				}
 			}

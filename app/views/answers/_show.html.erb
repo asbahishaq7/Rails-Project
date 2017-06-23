@@ -1,17 +1,26 @@
+<% comments = answer.comments.paginate(page: params[:page], per_page: 2) %>
+<h3> Answer </h3>
 
 <div class="answer">
-<p>
-  <!-- <strong>Detail:</strong> -->
-  <%= answer.detail %>
-  <% if can? :update, answer %> 
-	  <% unless current_user.admin? %>
-	  	<strong> -- you -- </strong>
-	  <% end %>
-	  	<%= link_to 'Edit', edit_answer_path(answer) %>
-	  	<%= link_to 'Delete', answer, method: :delete, data: { confirm: 'Are you sure?' } %>
-  <% else %>
-  	<strong> -- <%= answer.user.email %> -- </strong>
-  <% end %>
-  
-</p>
+  <p>
+    <%= answer.detail %>
+    <% if can? :update, answer %> 
+  	  	<%= link_to 'Edit', edit_answer_path(answer) %>
+    <% end %>
+
+    <% if can? :destroy, answer %>
+  	  	<%= link_to 'Delete', answer, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+    
+    <strong> -- <%= answer.user.email %> -- </strong>
+  </p>
+</div>
+
+<div class="comments" >
+  <b> Comments </b>
+  <%= render partial: 'comments/show', collection: comments, as: :comment  %>
+  <%= will_paginate comments %>
+
+  <% comment = answer.comments.build %>
+  <%= render 'comments/form', comment: comment  %>
 </div>

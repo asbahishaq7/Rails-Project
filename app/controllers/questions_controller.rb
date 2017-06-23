@@ -1,45 +1,47 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
-  #before_action :validate_user, except: [:new, :create, :index, :show]
-  authorize_resource
+  load_and_authorize_resource
 
   # GET /questions
-  # GET /questions.json
   def index
-    #@questions = Question.all
-    @questions = Question.paginate(page: params[:page], per_page: 5)
+    @questions = @questions.page(params[:page]).per_page(5)
   end
 
   # GET /questions/1
-  # GET /questions/1.json
   def show
-    @question = Question.find(params[:id])
-
+    respond_to do |format|
+      format.json { redirect_to root_path, notice: t(:json_error) }
+      format.html { }
+    end
     @comments = @question.comments.paginate(page: params[:page], per_page: 2)
-    @answers = @question.answers
-    @answer  = @question.answers.build
-    @comment = @question.comments.build
+    @answers  = @question.answers
+    @comment  = @question.comments.build
+    #@answer  = @question.answers.build 
   end
 
   # GET /questions/new
   def new
-    #@question = Question.new
-    @question = current_user.questions.build
+    respond_to do |format|
+      format.json { redirect_to root_path, notice: t(:json_error) }
+      format.html { @question = current_user.questions.build }
+    end
   end
 
   # GET /questions/1/edit
   def edit
+    respond_to do |format|
+      format.json { redirect_to root_path, notice: t(:json_error) }
+      format.html { }
+    end
   end
 
   # POST /questions
-  # POST /questions.json
   def create
     @question = current_user.questions.build(question_params)
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
+        format.html { redirect_to @question, notice: t(:question_created) }
       else
         format.html { render action: 'new' }
       end
@@ -47,11 +49,10 @@ class QuestionsController < ApplicationController
   end
 
   # PATCH/PUT /questions/1
-  # PATCH/PUT /questions/1.json
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
+        format.html { redirect_to @question, notice: t(:question_updated) }
       else
         format.html { render action: 'edit' }
       end
@@ -59,11 +60,10 @@ class QuestionsController < ApplicationController
   end
 
   # DELETE /questions/1
-  # DELETE /questions/1.json
   def destroy
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to questions_url }
+      format.html { redirect_to questions_url, notice: t(:question_deleted)  }
     end
   end
 
@@ -78,9 +78,4 @@ class QuestionsController < ApplicationController
       params.require(:question).permit(:title, :description)
     end
 
-    def validate_user
-      unless current_user.id == @question.user_id || current_user.admin?
-        redirect_to root_path, notice: 'You are not authorized'
-      end
-    end
 end

@@ -1,6 +1,6 @@
 body {
-  background-color: #fff;
-  color: #333;
+  background-color: #FFFFFF;
+  color: #333333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
@@ -13,19 +13,19 @@ p, ol, ul, td {
 }
 
 pre {
-  background-color: #eee;
+  background-color: #EEEEEE;
   padding: 10px;
   font-size: 11px;
 }
 
 a {
-  color: #000;
+  color: #000000;
   &:visited {
-    color: #666;
+    color: #666666;
   }
   &:hover {
-    color: #fff;
-    background-color: #000;
+    color: #FFFFFF;
+    background-color: #000000;
   }
 }
 
@@ -45,13 +45,13 @@ div {
   display: table;
 }
 
-#error_explanation {
+#error-explanation {
   width: 450px;
   border: 2px solid red;
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
-  background-color: #f0f0f0;
+  background-color: #F0F0F0;
   h2 {
     text-align: left;
     font-weight: bold;
@@ -59,8 +59,8 @@ div {
     font-size: 12px;
     margin: -7px;
     margin-bottom: 0px;
-    background-color: #c00;
-    color: #fff;
+    background-color: #CC0000;
+    color: #FFFFFF;
   }
   ul li {
     font-size: 12px;
