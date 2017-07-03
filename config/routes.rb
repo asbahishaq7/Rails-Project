@@ -11,7 +11,6 @@ Stackoverflow::Application.routes.draw do
 
   resources :questions do
     resources :answers , only: [:edit, :create, :update, :destroy]
-    #resources :comments, only: [:index, :new, :create]
   end
   resources :comments, only: [:edit, :create, :update, :destroy]
   
