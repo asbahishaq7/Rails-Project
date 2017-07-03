@@ -1,0 +1,15 @@
+
+# config/locales/du.yml
+du:
+  hello_world:        Ahoy World
+  json_error:         De website werkt momenteel niet met json
+  question_created:   Vraag is succesvol gemaakt.
+  question_updated:   Vraag is succesvol bijgewerkt.
+  question_deleted:   Vraag is succesvol verwijderd.
+  answer_created:     Antwoord is succesvol aangemaakt.
+  answer_updated:     Antwoord is succesvol bijgewerkt.
+  answer_deleted:     Antwoord is succesvol verwijderd.
+  comment_created:    Opmerking is succesvol gemaakt.
+  comment_updated:    Opmerking is succesvol bijgewerkt.
+  comment_deleted:    Opmerking is succesvol verwijderd.
+

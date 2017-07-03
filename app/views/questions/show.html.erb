@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <h1>
+  	<strong>Title:</strong>
+  	<%= @question.title %>
+  </h1>
+</p>
+
+<p>
+  <div class="question-description"> <%= @question.description %> </div>
+</p>
+
+<% if can? :update, @question %>
+		<%= link_to 'Edit', edit_question_path(@question) %> 
+<% end %>
+
+<% if can? :create, @question %>
+		<%= link_to 'New Question', new_question_path %>
+<% end %>
+
+<div class="comments" >
+	<h2> Comments </h2>
+	<%= render partial: 'comments/show', collection: @comments, as: :comment  %>
+  <%= will_paginate @comments %>
+
+	<br />
+  <% comment = @question.comments.build %>
+  <%= render 'comments/form', comment: comment %>
+</div>
+
+<br />
+<div class="answers">
+	<h2> Answers </h2>
+		<%= render partial: 'answers/show', collection: @answers, as: :answer %>
+	<br />
+	<% answer  = @question.answers.build %>
+	<div class="answer-form">
+		<%= render 'answers/form', answer: answer  %>
+	</div>
+
+</div>
+

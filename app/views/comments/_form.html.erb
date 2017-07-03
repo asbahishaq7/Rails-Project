@@ -1,0 +1,25 @@
+<% if can? :create, comment %>
+  <div>
+    <strong> Post Comment </strong>
+
+    <%= form_for(comment) do |f| %>
+      <% if comment.errors.any? %>
+        <%= render 'shared/error_explanation', obj: comment  %>
+      <% end %>
+
+      <div class="field">
+        <br />
+        <%= f.text_area :detail, placeholder: "Enter your comment here" %>
+      </div>
+
+      <%= f.hidden_field :commentable_id %>
+      <%= f.hidden_field :commentable_type %>
+      <br />
+
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+  </div>   
+<% end %>
+  

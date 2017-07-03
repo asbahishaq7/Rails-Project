@@ -1,0 +1,35 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+
+# config/locales/en.yml
+en:
+  hello_world:        Hello world!
+  json_error:         The website currently doesnt work with json!
+  question_created:   Question was successfully created.
+  question_updated:   Question was successfully updated.
+  question_deleted:   Question was successfully deleted.
+  answer_created:     Answer was successfully created.
+  answer_updated:     Answer was successfully updated.
+  answer_deleted:     Answer was successfully deleted.
+  comment_created:    Comment was successfully created.
+  comment_updated:    Comment was successfully updated.
+  comment_deleted:    Comment was successfully deleted.

@@ -1,0 +1,26 @@
+<% comments = answer.comments.paginate(page: params[:page], per_page: 2) %>
+<h3> Answer </h3>
+
+<div class="answer">
+  <p>
+    <%= answer.detail %>
+    <% if can? :update, answer %> 
+  	  	<%= link_to 'Edit', edit_question_answer_path(answer.question_id, answer) %>
+    <% end %>
+
+    <% if can? :destroy, answer %>
+  	  	<%= link_to 'Delete', [answer.question, answer], method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+    
+    <strong> -- <%= answer.user.email %> -- </strong>
+  </p>
+</div>
+
+<div class="comments" >
+  <b> Comments </b>
+  <%= render partial: 'comments/show', collection: comments, as: :comment  %>
+  <%= will_paginate comments %>
+
+  <% comment = answer.comments.build %>
+  <%= render 'comments/form', comment: comment  %>
+</div>

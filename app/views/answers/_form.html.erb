@@ -1,0 +1,21 @@
+<% if can? :create, answer %>
+  
+    <h2> Post Answer </h2>
+
+    <%= form_for ([answer.question, answer]) do |f| %>
+      <% if answer.errors.any? %>
+        <%= render 'shared/error_explanation', obj: answer  %>
+      <% end %>
+
+      <div class="field">
+        <%= f.text_area :detail, placeholder: "Enter your answer here"  %>
+      </div>
+      
+      <%= f.hidden_field :question_id %>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+
+    <% end %>
+ 
+<% end %>

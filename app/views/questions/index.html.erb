@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1> Questions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td>  <b><%= question.title %> </b></td>
+        <td><%= link_to 'Show', question %></td>
+        <% if can? :update, question %>
+          <td><%= link_to 'Edit', edit_question_path(question) %></td>
+        <% end %>
+        <% if can? :destroy, question %>  
+            <td><%= link_to 'Delete', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+      <tr> 
+        <td> <hr> </td> 
+        <td> <hr> </td>
+        <td> <hr> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @questions %>
+
+<br />
+
+<%= link_to 'New Question', new_question_path %>
