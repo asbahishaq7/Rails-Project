@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
-    @comment = current_user.comments.build(comment_params)
+    @comment.user_id = current_user.id
     respond_to do |format|
       if @comment.save
         format.html { redirect_to request.referer, notice: t(:comment_created)  }
