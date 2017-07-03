@@ -1,18 +1,18 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
+  load_and_authorize_resource :question
+  load_and_authorize_resource through: :question
 
   # GET /answers/1/edit
   def edit
     respond_to do |format|
       format.json { redirect_to root_path, notice: t(:json_error) }
-      format.html { }
+      format.html
     end
   end
   
   # POST /answers
   def create
-    #binding.pry
     @answer  = current_user.answers.build(answer_params)
     
     respond_to do |format|
@@ -45,10 +45,6 @@ class AnswersController < ApplicationController
   end
   
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_answer
-      @answer = Answer.find(params[:id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params

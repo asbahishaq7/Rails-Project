@@ -5,11 +5,11 @@
   <p>
     <%= answer.detail %>
     <% if can? :update, answer %> 
-  	  	<%= link_to 'Edit', edit_answer_path(answer) %>
+  	  	<%= link_to 'Edit', edit_question_answer_path(answer.question_id, answer) %>
     <% end %>
 
     <% if can? :destroy, answer %>
-  	  	<%= link_to 'Delete', answer, method: :delete, data: { confirm: 'Are you sure?' } %>
+  	  	<%= link_to 'Delete', [answer.question, answer], method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
     
     <strong> -- <%= answer.user.email %> -- </strong>

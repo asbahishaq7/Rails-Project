@@ -2,7 +2,7 @@
   
     <h2> Post Answer </h2>
 
-    <%= form_for(answer) do |f| %>
+    <%= form_for ([answer.question, answer]) do |f| %>
       <% if answer.errors.any? %>
         <%= render 'shared/error_explanation', obj: answer  %>
       <% end %>

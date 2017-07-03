@@ -3,20 +3,17 @@ Stackoverflow::Application.routes.draw do
   
   devise_for :users
   
-
-  resources :questions
-  resources :answers, only: [:edit, :create, :update, :destroy]
-  resources :comments, only: [:edit, :create, :update, :destroy]
-
 =begin
-  resources :questions do
-    resources :answers do
-      resources :comments, only: [:index, :new, :create]
-    end
-    resources :comments, only: [:index, :new, :create]
-  end
-  resources :comments, only: [:show, :edit, :update, :destroy]
+  resources :questions
+  resources :answers, only: [:edit, :create, :update, :destroy] 
+  resources :comments, only: [:edit, :create, :update, :destroy]
 =end
+
+  resources :questions do
+    resources :answers , only: [:edit, :create, :update, :destroy]
+    #resources :comments, only: [:index, :new, :create]
+  end
+  resources :comments, only: [:edit, :create, :update, :destroy]
   
 
   root to: 'questions#index'
